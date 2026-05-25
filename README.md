@@ -25,7 +25,7 @@
 ### 1. Kỹ thuật lập trình căn bản
 
 #### 1.1 Cài đặt công cụ
-- Download và cài đặt Eclipse, MyEclipse, NetBeans, hoặc **IntelliJ IDEA**
+- Download và cài đặt **IntelliJ IDEA**
 
 #### 1.2 Kiểu dữ liệu (8 loại)
 
@@ -61,7 +61,7 @@
 |---|---|---|---|
 | **Bubble Sort** | Đổi chỗ phần tử liền kề | O(n²) | For lồng nhau, so sánh liền kề nhỏ hơn thì đổi chỗ |
 | **Selection Sort** | Chọn phần tử nhỏ nhất | O(n²) | Tìm bé nhất cho xuống đầu, lặp tới hết |
-| **Quick Sort** | Chọn chốt, chia 2 bên | O(n log n) | 2 hàm: phân vùng & triển khai đệ quy |
+| **Quick Sort** | Chọn chốt, nhỏ hơn sang trái, lớn hơn sang phải | O(n log n) | 2 hàm: phân vùng & triển khai đệ quy |
 | **Merge Sort** | Chia đôi & gộp lại có thứ tự | O(n log n) | Đệ quy, sau đó gộp 2 mảng đã sort |
 
 **Quick Sort Example:**
@@ -88,7 +88,7 @@ void mergeSort(int *arr, int l, int r) {
 
 // mergeParts(): gộp 2 mảng đã sắp xếp
 // while (trái còn && phải còn) {
-//   cái nào nhỏ hơn thì cho trước vào mảng temp
+//   cái nào nhỏ hơn thì cho vào mảng temp; ++
 // }
 ```
 

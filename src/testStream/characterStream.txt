@@ -1,0 +1,2 @@
+Xin chao, day la FileWriter!
+Dong 2

@@ -1,0 +1,30 @@
+-- Script tao bang STUDENT va them du lieu mau
+-- Chay tren SQL*Plus hoac SQLDeveloper voi tai khoan scott/123456
+
+-- 1. Xoa bang neu ton tai
+DROP TABLE STUDENT;
+
+-- 2. Tao bang STUDENT voi IDENTITY
+CREATE TABLE STUDENT (
+    STUDENT_ID    NUMBER GENERATED ALWAYS AS IDENTITY (START WITH 1000) PRIMARY KEY,
+    NAME          VARCHAR2(50) NOT NULL UNIQUE,
+    GENDER        VARCHAR2(10),
+    HOMETOWN      VARCHAR2(100),
+    AGE           NUMBER
+);
+
+-- 3. Them du lieu mau
+INSERT INTO STUDENT (NAME, GENDER, HOMETOWN, AGE) VALUES ('Tran Van A', 'Nam', 'Ha Noi', 20);
+INSERT INTO STUDENT (NAME, GENDER, HOMETOWN, AGE) VALUES ('Le Thi B', 'Nu', 'TP HCM', 21);
+INSERT INTO STUDENT (NAME, GENDER, HOMETOWN, AGE) VALUES ('Hoang Van C', 'Nam', 'Da Nang', 19);
+INSERT INTO STUDENT (NAME, GENDER, HOMETOWN, AGE) VALUES ('Pham Thi D', 'Nu', 'Can Tho', 22);
+INSERT INTO STUDENT (NAME, GENDER, HOMETOWN, AGE) VALUES ('Ngo Van E', 'Nam', 'Hai Phong', 20);
+INSERT INTO STUDENT (NAME, GENDER, HOMETOWN, AGE) VALUES ('Vu Thi F', 'Nu', 'Hue', 21);
+INSERT INTO STUDENT (NAME, GENDER, HOMETOWN, AGE) VALUES ('Dang Van G', 'Nam', 'Vinh', 19);
+INSERT INTO STUDENT (NAME, GENDER, HOMETOWN, AGE) VALUES ('Bui Thi H', 'Nu', 'Quang Ninh', 22);
+
+-- 4. Commit du lieu
+COMMIT;
+
+-- 5. Kiem tra du lieu vua them
+SELECT * FROM STUDENT;

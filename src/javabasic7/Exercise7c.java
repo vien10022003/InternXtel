@@ -22,7 +22,7 @@ public class Exercise7c {
             // Doc du lieu tu file
             int[] arr = readFromFile(inputFile);
             
-            if (arr == null || arr.length == 0) {
+            if (arr.length == 0) {
                 System.out.println("File trong hoac khong co du lieu!");
                 return;
             }
@@ -50,7 +50,6 @@ public class Exercise7c {
             
         } catch (IOException e) {
             System.out.println("LOI khi doc file: " + e.getMessage());
-            e.printStackTrace();
         }
     }
     

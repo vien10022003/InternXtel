@@ -18,27 +18,19 @@ public class CharacterStreamTest {
     
     // Ghi file bang FileWriter
     static void writeFile(String filename, String data) throws IOException {
-        FileWriter fw = null;
-        try {
-            fw = new FileWriter(filename);
+        try (FileWriter fw = new FileWriter(filename)) {
             fw.write(data);
             System.out.println("Ghi file (text) thanh cong!");
-        } finally {
-            if (fw != null) fw.close();
         }
     }
     
     // Doc file bang FileReader (khong co buffer, doc 1 ky tu)
     static void readFile(String filename) throws IOException {
-        FileReader fr = null;
-        try {
-            fr = new FileReader(filename);
+        try (FileReader fr = new FileReader(filename)) {
             char[] chars = new char[100];
             int charsRead = fr.read(chars);
             String data = new String(chars, 0, charsRead);
             System.out.println("Doc file (text):\n" + data);
-        } finally {
-            if (fr != null) fr.close();
         }
     }
 }

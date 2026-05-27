@@ -1249,6 +1249,10 @@ NEW → RUNNABLE → (BLOCKED/WAITING/TIMED_WAITING) → RUNNABLE → TERMINATED
 | **TIMED_WAITING** | Chờ có giới hạn thời gian | `Thread.sleep(ms)`, `wait(timeout)`, `join(timeout)` |
 | **TERMINATED** | Đã kết thúc `run()` hoặc exception | Hết luồng |
 
+
+
+
+
 #### 2.5 Deadlock
 
 **Khái niệm**: Các thread chờ nhau mãi mãi vì mỗi thread giữ một lock và chờ lock của thread khác.
@@ -1368,8 +1372,9 @@ UDP  → java.net.DatagramSocket / java.net.DatagramPacket
 #### 4.2 Queue
 
 **Khái niệm**: Cấu trúc dữ liệu FIFO (First-In-First-Out)
-- **Đa luồng**: Phải dùng `java.util.concurrent.BlockingQueue` (thread-safe)
 - **Lý do**: Tách biệt Producer & Consumer, cân bằng tải, tránh race condition
+- **BlockingQueue**: Cung cấp khả năng hoạt động an toàn trong đa luồng bằng cách chặn luồng hiện tại nếu put đầy hoặc take trống
+
 
 | BlockingQueue | Đặc điểm | Sử dụng |
 |---|---|---|
@@ -1428,11 +1433,26 @@ UDP  → java.net.DatagramSocket / java.net.DatagramPacket
 
 
 **synchronized**: 
-- trên khối trong phương thức thường: chỉ 1 thread chạy trên phương thức đó
-- trên phương thức (thường):chỉ 1 thread trên phương thức đó
-- trên khối trong phương thức static: chỉ 1 thread chạy trên object đó
-- trên phương thức (static): chỉ 1 thread trên object đó
+- Trong phương thức không static: chỉ 1 thread chạy trên phương thức đó
 
+- Trong phương thức static: chỉ 1 thread chạy trên object đó
+
+**Join**
+- Thread gọi phương thức này (t.join()) sẽ chờ cho đến khi thread t hoàn thành rồi mới tiếp tục chạy tiếp 
+
+**Wait**
+- Thread gọi phương thức này (t.wait()) sẽ chờ cho đến khi có thread khác (ví dụ t) gọi notify() hoặc notifyAll()
+
+**notify** 
+- Đánh thức một luồng tùy ý (có thể theo thứ tự) một luồng mà đang wait trên đối tượng giám sát (vậy nên chỉ có thể gọi trong synchronized)
+
+**notifyAll** 
+- Đánh thức tất các các luồng mà đang wait trên đối tượng giám sát (chỉ có thể gọi trong synchronized)
+
+**lock and unlock**
+- Là 2 phương thức của java.util.concurrent.locks.Lock và nó có thể cố gắng giành khóa để thực hiện chương trình nhằm tránh xung đột tài nguyên
+- lock() sẽ cố gắng giành khóa và chặn luồng hiện tại nếu không lấy được khóa
+- tryLock() sẽ cố gắng giành khóa và trả về true nếu giành được
 ---
 
 ### 5. Logger
